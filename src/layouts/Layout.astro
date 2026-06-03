@@ -16,6 +16,7 @@ const imageURL = new URL(image, Astro.site || "https://ethan-events.com"); /* TO
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
 		<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
 		<link rel="icon" type="image/png" href="/fav_icon.png" sizes="32x32" />
 
@@ -42,6 +43,29 @@ const imageURL = new URL(image, Astro.site || "https://ethan-events.com"); /* TO
 	</head>
 	<body>
 		<slot />
+		
+		<script defer src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+
+
+		<script is:inline>
+			document.addEventListener('DOMContentLoaded', function() {
+				if (typeof Swiper !== 'undefined') {
+				new Swiper('.swiper', {
+					slidesPerView: "auto",
+					loop: true,
+					spaceBetween: 20,
+					breakpoints: { 768: { spaceBetween: 40 } },
+					navigation: {
+					nextEl: ".swiper-button-next",
+					prevEl: ".swiper-button-prev"
+					}
+				});
+				} else {
+				console.error('Swiper library not loaded');
+				}
+			});
+		</script>
+
 	</body>
 </html>
 

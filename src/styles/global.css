@@ -22,7 +22,7 @@
     font-family: helvetica-neue;
     src: url(../fonts/helvetica-neue-medium-condensed-normal.woff2) format("woff2"), 
          url(../fonts/helvetica-neue-medium-condensed-normal.woff) format("woff");
-    font-weight: 700; /* Standard Bold text (h1, h2, strong) */
+    font-weight: 700;
     font-style: normal;
     font-display: swap;
 }
@@ -31,7 +31,7 @@
     font-family: helvetica-neue;
     src: url(../fonts/helvetica-neue-medium-normal.woff2) format("woff2"), 
          url(../fonts/helvetica-neue-medium-normal.woff) format("woff");
-    font-weight: 400; /* Standard Body text (p, span) */
+    font-weight: 400;
     font-style: normal;
     font-display: swap;
 }
@@ -68,19 +68,26 @@
     --color-purple: #871FFF;
     --color-gray: #f0f3f4;
 
-    --text-h1: clamp(2.25rem, 5vw + 1rem, 4.5rem);
-    --text-h2: clamp(1.875rem, 4vw + 1rem, 3.75rem);
-    --text-h3: clamp(1.5rem, 3vw + 1rem, 3rem);
-    --text-h4: clamp(1.25rem, 2vw + 1rem, 2.25rem);
-    --text-h5: clamp(1.125rem, 1.5vw + 1rem, 1.75rem);
-    --text-h6: clamp(1rem, 1vw + 1rem, 1.25rem);
-    
-    --text-h1--line-height: 1.1;
-    --text-h2--line-height: 1.2;
-    --text-h3--line-height: 1.25;
-    --text-h4--line-height: 1.3;
-    --text-h5--line-height: 1.4;
-    --text-h6--line-height: 1.5;
+    --text-h1: clamp(3.125rem, calc(1.5rem + 7.222vw), 8rem);
+    --text-h2: clamp(1.587rem, calc(0.762rem + 3.668vw), 4.0625rem);
+    --text-h3: clamp(4.813rem, calc(3.75rem + 4.722vw), 8rem);
+}
+
+@layer base {
+    h1 {
+        font-size: var(--text-h1);
+        @apply font-sans font-[900] leading-[0.8] text-black uppercase text-pretty;
+    }
+
+    h2 {
+        font-size: var(--text-h2);
+         @apply font-sans font-[900] leading-none text-black text-pretty;
+    }
+
+    h3 {
+        font-size: var(--text-h3);
+        @apply font-sans font-[900] leading-[0.8] text-black uppercase text-pretty;
+    }
 }
 
 @utility container {
