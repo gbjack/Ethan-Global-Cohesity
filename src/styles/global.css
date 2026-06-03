@@ -69,7 +69,7 @@
     --color-gray: #f0f3f4;
 
     --text-h1: clamp(3.125rem, calc(1.5rem + 7.222vw), 8rem);
-    --text-h2: clamp(1.587rem, calc(0.762rem + 3.668vw), 4.0625rem);
+   --text-h2: clamp(2rem, calc(1rem + 4.5vw), 5rem);
     --text-h3: clamp(4.813rem, calc(3.75rem + 4.722vw), 8rem);
 }
 
