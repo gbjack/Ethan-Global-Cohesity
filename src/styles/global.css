@@ -162,7 +162,7 @@ label {
   button[type="submit"],
   input[type="submit"] {
     @apply w-fit bg-black border-2 border-black px-4 py-2.5 font-display text-[1.375rem] font-[950] uppercase leading-none text-white;
-    @apply hover:bg-transparent hover:text-black hover:scale-105 focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2;
+    @apply hover:text-black hover:scale-105 focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2;
     @apply disabled:bg-black disabled:cursor-not-allowed;
     @apply transition-all duration-500 cursor-pointer;
   }
