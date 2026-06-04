@@ -1,61 +1,49 @@
 @import "tailwindcss";
 
 @font-face {
-    font-family: helvetica-neue;
-    src: url(../fonts/helvetica-neue-extra-black-normal.woff2) format("woff2"), 
-         url(../fonts/helvetica-neue-extra-black-normal.woff) format("woff");
-    font-weight: 900;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: helvetica-neue;
-    src: url(../fonts/helvetica-neue-heavy-normal.woff2) format("woff2"), 
-         url(../fonts/helvetica-neue-heavy-normal.woff) format("woff");
-    font-weight: 800;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: helvetica-neue;
-    src: url(../fonts/helvetica-neue-medium-condensed-normal.woff2) format("woff2"), 
-         url(../fonts/helvetica-neue-medium-condensed-normal.woff) format("woff");
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: helvetica-neue;
-    src: url(../fonts/helvetica-neue-medium-normal.woff2) format("woff2"), 
-         url(../fonts/helvetica-neue-medium-normal.woff) format("woff");
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: helvetica-neue;
-    src: url(../fonts/helvetica-neue-light-condensed-normal.woff2) format("woff2"), 
-         url(../fonts/helvetica-neue-light-condensed-normal.woff) format("woff");
+    font-family: 'Helvetica Neue';
+    src: url('../fonts/helveticaneuelight-webfont.woff2') format('woff2');
     font-weight: 300;
     font-style: normal;
     font-display: swap;
 }
 
 @font-face {
-    font-family: helvetica-neue;
-    src: url(../fonts/helvetica-neue-light-normal.woff2) format("woff2"), 
-         url(../fonts/helvetica-neue-light-normal.woff) format("woff");
-    font-weight: 200;
+    font-family: 'Helvetica Neue';
+    src: url('../fonts/helvetica_neue_regular-webfont.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Helvetica Neue';
+    src: url('../fonts/helveticaneuemedium-webfont.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Helvetica Neue';
+    src: url('../fonts/helveticaneuebold-webfont.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Helvetica LT 107';
+    src: url('../fonts/helvetica_lt_107_extra_black_condensed-webfont.woff2') format('woff2');
+    font-weight: 950;
+    font-stretch: condensed;
     font-style: normal;
     font-display: swap;
 }
 
 @theme {
-    --font-sans: "helvetica-neue", system-ui, sans-serif;
+    --font-sans: "Helvetica Neue", system-ui, sans-serif;
+    --font-display: "Helvetica LT 107", system-ui, sans-serif;
     
     --color-*: initial;
     --color-green: #00dd68;
@@ -68,25 +56,42 @@
     --color-purple: #871FFF;
     --color-gray: #f0f3f4;
 
-    --text-h1: clamp(3.125rem, calc(1.5rem + 7.222vw), 8rem);
-   --text-h2: clamp(2rem, calc(1rem + 4.5vw), 5rem);
+    /* --text-h1: clamp(3.125rem, calc(1.5rem + 7.222vw), 8rem); */
+    --text-h1: clamp(3.6rem, calc(2rem + 8vw), 10rem);
+    --text-h2: clamp(2rem, calc(1rem + 4.5vw), 4.0625rem);
     --text-h3: clamp(4.813rem, calc(3.75rem + 4.722vw), 8rem);
+    --text-h4: clamp(2.375rem, calc(2.167rem + 0.926vw), 3rem);
+    --text-h5: clamp(1.438rem, calc(1.292rem + 0.648vw), 1.875rem);
 }
 
 @layer base {
     h1 {
         font-size: var(--text-h1);
-        @apply font-sans font-[900] leading-[0.8] text-black uppercase text-pretty;
+        @apply font-display font-[950] leading-[0.8] tracking-tight text-black uppercase text-pretty;
     }
 
     h2 {
         font-size: var(--text-h2);
-         @apply font-sans font-[900] leading-none text-black text-pretty;
+         @apply font-display font-[950] leading-none text-black text-pretty;
     }
 
     h3 {
         font-size: var(--text-h3);
-        @apply font-sans font-[900] leading-[0.8] text-black uppercase text-pretty;
+        @apply font-display font-[950] leading-[0.8] tracking-normal text-black uppercase text-pretty;
+    }
+
+    h4 {
+        font-size: var(--text-h4);
+        @apply font-display font-[950] leading-none text-black text-pretty;
+    }
+
+    h5 {
+        font-size: var(--text-h5);
+        @apply font-sans font-[700] leading-snug tracking-tight text-pretty;
+    }
+
+    p {
+        @apply font-sans font-[300] leading-relaxed text-black text-xl md:text-2xl lg:text-[1.625rem];
     }
 }
 
@@ -95,3 +100,69 @@
   max-width: 90rem;
   margin: 0 auto;
 }
+
+/* All text inputs, email, tel, number, even no type */
+input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="button"]),
+select,
+textarea {
+    @apply w-full font-sans font-[500] text-black text-[1.125rem] bg-[#F1F1F1] px-2 py-3;
+    @apply focus:border-b-black focus:outline-none focus:ring-1 focus:ring-black;
+    @apply disabled:bg-black disabled:cursor-not-allowed disabled:text-black;
+    @apply placeholder:text-black;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+    appearance: none;
+    @apply w-6 h-6 aspect-square rounded-none bg-[#F1F1F1] checked:bg-[#F1F1F1] checked:border focus:ring-2 focus:ring-black focus:ring-offset-0;
+    position: relative;
+}
+
+input[type="checkbox"]:checked {
+    @apply bg-[#F1F1F1] border-black;
+}
+
+input[type="checkbox"]:checked::after {
+    content: "✓";
+    @apply absolute text-black text-[1.125rem] font-bold;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+input[type="radio"] {
+    @apply rounded-full;
+}
+
+input[type="radio"]:checked::after {
+    content: "";
+    @apply absolute w-2 h-2 bg-white rounded-full;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+label {
+    @apply block font-sans font-[700] text-black text-[1.125rem] mb-2;
+}
+
+/* Number fields */
+@utility no-number-spinner {
+  appearance: none;
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
+    appearance: none;
+  }
+  &::-moz-appearance-textfield {
+    appearance: textfield;
+  }
+}
+
+/* Submit button */
+  button[type="submit"],
+  input[type="submit"] {
+    @apply w-fit bg-black border-2 border-black px-4 py-2.5 font-display text-[1.375rem] font-[950] uppercase leading-none text-white;
+    @apply hover:bg-transparent hover:text-black hover:scale-105 focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2;
+    @apply disabled:bg-black disabled:cursor-not-allowed;
+    @apply transition-all duration-500 cursor-pointer;
+  }
