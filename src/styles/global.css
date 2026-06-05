@@ -108,7 +108,7 @@ textarea {
     @apply w-full font-sans font-[500] text-black text-[1.125rem] bg-[#F1F1F1] px-2 py-3;
     @apply focus:border-b-black focus:outline-none focus:ring-1 focus:ring-black;
     @apply disabled:bg-black disabled:cursor-not-allowed disabled:text-black;
-    @apply placeholder:text-black;
+    @apply placeholder:text-black/35;
 }
 
 input[type="checkbox"],
