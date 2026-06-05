@@ -2,13 +2,13 @@
 import '../styles/global.css'
 
 const { 
-	title = "Ethan Group x Cohesity", 
-	description = "Join Ethan Group and Cohesity for an executive lunch discussion focused on cyber resilience, operational continuity and recovery readiness in today’s evolving threat landscape.",
-	image = "/meta-tags.png"
+	title = "Ethan Global x Cohesity", 
+	description = "Join Ethan Global and Cohesity for an executive lunch discussion focused on cyber resilience, operational continuity and recovery readiness in today's evolving threat landscape.",
+	image = "https://resilienceredefined.com.au/meta-tags.png"
 } = Astro.props;
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://ethan-events.com"); /* TO BE UPDATED */
-const imageURL = new URL(image, Astro.site || "https://ethan-events.com"); /* TO BE UPDATED */
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://resilienceredefined.com.au/");
+const imageURL = new URL(image, Astro.site || "https://resilienceredefined.com.au/"); 
 ---
 
 <!doctype html>
