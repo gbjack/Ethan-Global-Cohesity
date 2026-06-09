@@ -17,10 +17,10 @@ import Features6 from '../assets/img-reducing-downtime-1800x1212.png'
 <Layout>
 
 	<header class="px-5">
-		<div class="w-full max-w-360 sm:px-0 mx-auto pt-14.5 flex flex-col items-start md:flex-row md:items-center justify-between gap-y-6">
-			<div class="flex flex-row gap-6 items-center">
+		<div class="w-full max-w-360 sm:px-0 mx-auto pt-14.5 flex flex-row items-center justify-between gap-y-6">
+			<div class="flex flex-row gap-3 sm:gap-6 items-center">
 				<a href="https://ethan.global/" target="_blank" class="hover:scale-105 transition-transform duration-500" aria-label="Ethan Global logo">
-					<svg xmlns="http://www.w3.org/2000/svg" width="155" height="34" viewBox="0 0 207 46" fill="none" class="w-full sm:w-auto h-5 sm:h-8.5">
+					<svg xmlns="http://www.w3.org/2000/svg" width="155" height="34" viewBox="0 0 207 46" fill="none" class="w-[clamp(70px,15vw,155px)] h-auto">
 						<g clip-path="url(#clip0_2002_7)">
 						<path d="M109.292 17.9554H98.8832L93.1752 27.5316H109.292V45.658H120.204V0H109.292V17.9554ZM139.343 0.171004L122.387 45.829H133.467L136.825 35.9108L139.847 27.1896L144.547 13.6803L149.08 27.1896L152.102 35.9108L155.46 45.829H166.876L150.088 0.171004H139.343ZM196.591 0.171004V28.2156L179.635 0.513011L179.467 0.171004H168.891V45.829H179.299V17.9554L196.423 45.829H207V0.171004H196.591ZM41.635 0.171004H78.5693V9.74721H65.6423V45.829H54.7299V9.74721H41.8029V0.171004H41.635Z" fill="#231F20"/>
 						<path d="M39.6205 0.171005H5.87598V9.74721H39.6205V0.171005Z" fill="#231F20"/>
@@ -35,9 +35,9 @@ import Features6 from '../assets/img-reducing-downtime-1800x1212.png'
 						</defs>
 					</svg>
 				</a>
-				<div class="min-w-px w-px max-w-px h-8.5 bg-black hidden sm:block">&nbsp;</div>
+				<div class="min-w-px w-px max-w-px h-8.5 bg-black block">&nbsp;</div>
 				<a href="https://www.cohesity.com/" target="_blank" class="hover:scale-105 transition-transform duration-500" aria-label="Cohesity logo">
-					<svg xmlns="http://www.w3.org/2000/svg" width="237" height="34" viewBox="0 0 237 34" fill="none" class="w-full sm:w-auto h-5 sm:h-8.5">
+					<svg xmlns="http://www.w3.org/2000/svg" width="237" height="34" viewBox="0 0 237 34" fill="none" class="w-[clamp(120px,20vw,237px)] h-auto">
 						<g clip-path="url(#clip0_2021_295)">
 							<path d="M157.651 0.512699H144.458C137.314 0.512699 131.542 6.27044 132.115 13.2728C132.609 19.3409 137.791 24.1306 144.084 24.1306H148.656C149.863 24.1306 150.974 23.3312 151.204 22.1641C151.516 20.5956 150.295 19.2161 148.755 19.2161H144.362C140.617 19.2161 137.328 16.4435 137.091 12.7669C136.834 8.76647 140.072 5.42718 144.084 5.42718L156.595 5.40357C157.024 5.40357 157.404 5.12361 157.528 4.71885L158.468 1.58532C158.629 1.05238 158.221 0.516072 157.655 0.516072L157.651 0.512699Z" fill="black"/>
 							<path d="M148.875 9.82222H144.276C143.083 9.82222 141.999 10.6149 141.759 11.7651C141.43 13.3436 142.654 14.7367 144.204 14.7367H148.628C152.356 14.7367 155.618 17.4992 155.868 21.1556C156.142 25.1694 152.901 28.5222 148.875 28.5222H136.22C135.864 28.5222 135.552 28.7516 135.452 29.0889L134.461 32.4046C134.307 32.9206 134.701 33.4367 135.246 33.4367H148.553C155.271 33.4367 160.992 28.0298 160.879 21.4254C160.769 15.0065 155.426 9.81885 148.872 9.81885L148.875 9.82222Z" fill="black"/>
@@ -57,8 +57,9 @@ import Features6 from '../assets/img-reducing-downtime-1800x1212.png'
 					</svg>
 				</a>
 			</div>
-			<a href="#registration-form" target="_self" class="font-display text-[1.375rem] leading-4 uppercase text-white bg-black px-2 py-3 border-2 border-black text-nowrap hover:bg-transparent hover:text-black hover:cursor-pointer hover:scale-105 transition-all duration-500">
-				RESERVE YOUR PLACE
+			<a href="#registration-form" target="_self" class="font-display text-sm sm:text-base md:text-lg lg:text-[1.375rem] leading-4 uppercase text-white bg-black px-2 sm:px-3 md:px-4 py-2 sm:py-2.5 md:py-3 border-2 border-black text-nowrap hover:bg-transparent hover:text-black hover:cursor-pointer hover:scale-105 transition-all duration-500">
+				<span class="hidden sm:inline">RESERVE YOUR PLACE</span>
+				<span class="inline sm:hidden">RSVP</span>
 			</a>
 		</div>
 	</header>
@@ -147,18 +148,19 @@ import Features6 from '../assets/img-reducing-downtime-1800x1212.png'
 					</div>
 
 					<div class="w-full md:w-2/3 flex flex-col py-8 md:py-10 justify-between space-y-10 mr-10">
-						<div>
+						<div class="mb-0">
 							<h2 class="font-display font-[950] tracking-normal text-black text-[3.25rem] md:text-[3.5rem] lg:text-[3.75rem]">
 								Amit Gupte
 							</h2>
-							<p class="font-bold tracking-tight text-[1.2rem] md:text-[1.3rem] lg:text-[1.5rem] md:mt-2">
-								Field Delivery Director & CTO&nbsp;|&nbsp;Cohesity
+							<p class="font-bold tracking-tight text-[1.2rem] md:text-[1.3rem] lg:text-[1.5rem] leading-normal mt-2 md:mt-4">
+								Field Delivery Director & CTO | Cohesity
 							</p>
 						</div>
-						<p class="text-xl md:text-2xl lg:text-[1.625rem]">
-							Amit Gupte is a technology and cyber resilience leader with extensive experience helping enterprise organisations strengthen operational resilience, modernise infrastructure environments and improve recovery readiness.
-						</p>
-						<div class="w-full border-t border-black mt-auto mb-5"></div>
+						<div class="w-full border-b border-black py-12 mb-5">
+           					<p class="text-xl md:text-2xl lg:text-[1.625rem]">
+          						Amit Gupte is a technology and cyber resilience leader with extensive experience helping enterprise organisations strengthen operational resilience, modernise infrastructure environments and improve recovery readiness.
+           					</p>
+						</div>
 						<a href="https://www.cohesity.com/" target="_self">
 							<svg xmlns="http://www.w3.org/2000/svg" width="237" height="34" viewBox="0 0 237 34" fill="none" role="img" aria-labelledby="cohesity-logo">
 								 <title id="cohesity-logo">Cohesity logo</title>
@@ -193,18 +195,19 @@ import Features6 from '../assets/img-reducing-downtime-1800x1212.png'
 						/>
 					</div>
 					<div class="w-full md:w-2/3 flex flex-col py-8 md:py-10 justify-between space-y-10 mr-10">
-						<div>
+						<div class="mb-0">
 							<h2 class="font-display font-[950] tracking-normal text-black text-[3.25rem] md:text-[3.5rem] lg:text-[3.75rem]">
 								Michael Desmyth
 							</h2>
-							<p class="font-bold tracking-tight text-[1.2rem] md:text-[1.3rem] lg:text-[1.5rem] md:mt-2">
+							<p class="font-bold tracking-tight text-[1.2rem] md:text-[1.3rem] lg:text-[1.5rem] leading-normal mt-2 md:mt-4">
 								Account Director | Ethan Global
 							</p>
 						</div>
-						<p class="text-black text-xl md:text-2xl lg:text-[1.625rem] font-sans font-extralight leading-relaxed">
-							Michael Desmyth works closely with enterprise organisations to deliver technology solutions that improve operational efficiency, resilience and long-term business continuity.
-						</p>
-						<div class="w-full border-t border-black mt-auto mb-5"></div>
+						<div class="w-full border-b border-black py-12 mb-5">
+    						<p class="text-black text-xl md:text-2xl lg:text-[1.625rem] font-sans font-extralight leading-relaxed">
+    							Michael Desmyth works closely with enterprise organisations to deliver technology solutions that improve operational efficiency, resilience and long-term business continuity.
+    						</p>
+						</div>
 						<a href="https://ethan.global/" target="_blank">
 							<svg xmlns="http://www.w3.org/2000/svg" width="	155" height="34" viewBox="0 0 155 34" fill="none" role="img" aria-labelledby="ethan-logo">
 								<title id="cohesity-logo">Cohesity logo</title>
@@ -218,7 +221,7 @@ import Features6 from '../assets/img-reducing-downtime-1800x1212.png'
 					</div>
 				</div>
 
-				<!-- Slide 1 -->
+				<!-- Slide 3 -->
 				<div class="swiper-slide bg-white w-full! md:w-[96%]! h-auto! p-3! md:p-4! flex! flex-col! md:flex-row! gap-6 md:gap-12 items-stretch" >
 
 					<div class="w-full md:w-1/3 aspect-4/5 bg-black overflow-hidden shrink-0">
@@ -235,18 +238,19 @@ import Features6 from '../assets/img-reducing-downtime-1800x1212.png'
 					</div>
 
 					<div class="w-full md:w-2/3 flex flex-col py-8 md:py-10 justify-between space-y-10 mr-10">
-						<div>
+						<div class="mb-0">
 							<h2 class="font-display font-[950] tracking-normal text-black text-[3.25rem] md:text-[3.5rem] lg:text-[3.75rem]">
 								Amit Gupte
 							</h2>
-							<p class="font-bold tracking-tight text-[1.2rem] md:text-[1.3rem] lg:text-[1.5rem] md:mt-2">
+							<p class="font-bold tracking-tight text-[1.2rem] md:text-[1.3rem] lg:text-[1.5rem] leading-normal mt-2 md:mt-4">
 								Field Delivery Director & CTO&nbsp;|&nbsp;Cohesity
 							</p>
 						</div>
-						<p class="text-xl md:text-2xl lg:text-[1.625rem]">
-							Amit Gupte is a technology and cyber resilience leader with extensive experience helping enterprise organisations strengthen operational resilience, modernise infrastructure environments and improve recovery readiness.
-						</p>
-						<div class="w-full border-t border-black mt-auto mb-5"></div>
+						<div class="w-full border-b border-black py-12 mb-5">
+    						<p class="text-xl md:text-2xl lg:text-[1.625rem]">
+    							Amit Gupte is a technology and cyber resilience leader with extensive experience helping enterprise organisations strengthen operational resilience, modernise infrastructure environments and improve recovery readiness.
+    						</p>
+						</div>
 						<a href="https://www.cohesity.com/" target="_blank">
 							<svg xmlns="http://www.w3.org/2000/svg" width="237" height="34" viewBox="0 0 237 34" fill="none" role="img" aria-labelledby="cohesity-logo">
 								 <title id="cohesity-logo">Cohesity logo</title>
@@ -265,7 +269,7 @@ import Features6 from '../assets/img-reducing-downtime-1800x1212.png'
 
 				</div>
 
-				<!-- Slide 2 -->
+				<!-- Slide 4 -->
 				<div class="swiper-slide bg-white w-full! md:w-[96%]! h-auto! p-3! md:p-4! flex! flex-col! md:flex-row! gap-6 md:gap-12 items-stretch">
 
 					<div class="w-full md:w-1/3 aspect-4/5 bg-black overflow-hidden shrink-0">
@@ -285,14 +289,15 @@ import Features6 from '../assets/img-reducing-downtime-1800x1212.png'
 							<h2 class="font-display font-[950] tracking-normal text-black text-[3.25rem] md:text-[3.5rem] lg:text-[3.75rem]">
 								Michael Desmyth
 							</h2>
-							<p class="font-bold tracking-tight text-[1.2rem] md:text-[1.3rem] lg:text-[1.5rem] md:mt-2">
+							<p class="font-bold tracking-tight text-[1.2rem] md:text-[1.3rem] lg:text-[1.5rem] leading-normal mt-2 md:mt-4">
 								Account Director | Ethan Global
 							</p>
 						</div>
-						<p class="text-black text-xl md:text-2xl lg:text-[1.625rem] font-sans font-extralight leading-relaxed">
-							Michael Desmyth works closely with enterprise organisations to deliver technology solutions that improve operational efficiency, resilience and long-term business continuity.
-						</p>
-						<div class="w-full border-t border-black mt-auto mb-5"></div>
+						<div class="w-full border-b border-black py-12 mb-5">
+    						<p class="text-black text-xl md:text-2xl lg:text-[1.625rem] font-sans font-extralight leading-relaxed">
+    							Michael Desmyth works closely with enterprise organisations to deliver technology solutions that improve operational efficiency, resilience and long-term business continuity.
+    						</p>
+						</div>
 						<a href="https://ethan.global/" target="_blank">
 							<svg xmlns="http://www.w3.org/2000/svg" width="	155" height="34" viewBox="0 0 155 34" fill="none" role="img" aria-labelledby="ethan-logo">
 								<title id="cohesity-logo">Cohesity logo</title>
@@ -339,10 +344,10 @@ import Features6 from '../assets/img-reducing-downtime-1800x1212.png'
 				What's On <br>The Table
 			</h3>
 			<div class="py-3" data-usal="fade-u delay-200">
-				<p>
+				<p class="leading-normal">
 					This is not a traditional vendor presentation.
 				</p>
-				<p class="leading-none">
+				<p class="leading-normal mt-5">
 					The session is designed as a peer-led executive discussion around:
 				</p>
 			</div>
@@ -471,33 +476,33 @@ import Features6 from '../assets/img-reducing-downtime-1800x1212.png'
 	</section>
 
 	<section class="px-5 py-20 sm:py-25 md:py-30 lg:py-36 bg-black">
-		<div class="container grid grid-cols-1 xl:grid-cols-12 gap-x-12 gap-y-6 md:gap-y-10 lg:gap-y-12 items-start">
-			<div class="lg:block lg:col-span-5" data-usal="fade-u">
-				<h3 class="text-white">
-					Stronger <br>Together
-				</h3>
-			</div>
+        <div class="container grid grid-cols-1 xl:grid-cols-12 gap-x-12 gap-y-6 md:gap-y-10 lg:gap-y-12 items-start">
+            <!-- items-start instead of align-items-start -->
 
-			<div class="lg:col-span-7 space-y-6 lg:space-y-8" data-usal="fade-u delay-200">
-				<div class="space-y-5 font-sans font-extralight leading-normal text-white text-xl md:text-2xl lg:text-[1.625rem]">
-					<p class="text-white">
-						<p class="text-white">
-							Together, Ethan Global and Cohesity help Australian enterprises remain operational when it matters most.
-						</p>
-						<p class="text-white">
-							Cohesity provides a modern platform for cyber resilience, backup, ransomware protection and rapid recovery.
-						</p>
-						<p class="text-white">
-							Ethan Global delivers the local expertise, integration capability and operational execution required to turn resilience strategies into real-world operational outcomes.
-						</p>
-					</p>
-					<p class="font-extrabold text-white">
-						The result: Organisations don’t just invest in resilience, they operationalise it, validate it and trust it.
-					</p>
-				</div>
-			</div>
-		</div>
-	</section>
+            <div class="lg:block lg:col-span-5" data-usal="fade-u">
+                <h3 class="text-white mt-1">
+                    Stronger <br>Together
+                </h3>
+            </div>
+
+            <div class="lg:col-span-7 space-y-6 lg:space-y-8" data-usal="fade-u delay-200">
+                <div class="space-y-5 font-sans font-extralight leading-normal text-white text-xl md:text-2xl lg:text-[1.625rem]">
+                    <p class="text-white mt-0 pt-0">
+                        Together, Ethan Global and Cohesity help Australian enterprises remain operational when it matters most.
+                    </p>
+                    <p class="text-white">
+                        Cohesity provides a modern platform for cyber resilience, backup, ransomware protection and rapid recovery.
+                    </p>
+                    <p class="text-white">
+                        Ethan Global delivers the local expertise, integration capability and operational execution required to turn resilience strategies into real-world operational outcomes.
+                    </p>
+                    <p class="font-extrabold text-white">
+                        The result: Organisations don’t just invest in resilience, they operationalise it, validate it and trust it.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
 
 	<section class="px-5 py-20 sm:py-25 md:py-30 lg:py-36">
 		<div class="container grid grid-cols-1 xl:grid-cols-12 gap-x-12 gap-y-6 md:gap-y-10 lg:gap-y-12 items-start">
