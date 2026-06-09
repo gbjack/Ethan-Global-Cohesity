@@ -1,28 +1,37 @@
 ---
-import '../styles/global.css'
+import "../styles/global.css";
 
 const {
-	title = "Resilience Redefined | Ethan Global x Cohesity Event",
-	description = "Join Ethan Global and Cohesity for an executive lunch discussion focused on cyber resilience, operational continuity and recovery readiness in today's evolving threat landscape. Designed for senior security and technology leaders, this conversational session explores how organisations are reducing operational risk, improving recovery confidence and preparing for modern cyber threats.",
-	image = "https://resilienceredefined.com.au/meta-tags.png"
+    title = "Resilience Redefined | Ethan Global x Cohesity Event",
+    description = "Join Ethan Global and Cohesity for an executive lunch discussion focused on cyber resilience, operational continuity and recovery readiness in today's evolving threat landscape. Designed for senior security and technology leaders, this conversational session explores how organisations are reducing operational risk, improving recovery confidence and preparing for modern cyber threats.",
+    image = "https://resilienceredefined.com.au/meta-tags.png",
 } = Astro.props;
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://resilienceredefined.com.au/");
-const imageURL = new URL(image, Astro.site || "https://resilienceredefined.com.au/");
+const canonicalURL = new URL(
+    Astro.url.pathname,
+    Astro.site || "https://resilienceredefined.com.au/",
+);
+const imageURL = new URL(
+    image,
+    Astro.site || "https://resilienceredefined.com.au/",
+);
 ---
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
-		<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-		<link rel="icon" type="image/png" href="/fav_icon.png" sizes="32x32" />
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css"
+        />
+        <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" href="/fav_icon.png" sizes="32x32" />
 
-		<meta name="generator" content={Astro.generator} />
+        <meta name="generator" content={Astro.generator} />
 
-		<!-- Primary Meta Tags -->
+        <!-- Primary Meta Tags -->
         <title>{title}</title>
         <meta name="title" content={title} />
         <meta name="description" content={description} />
@@ -40,60 +49,62 @@ const imageURL = new URL(image, Astro.site || "https://resilienceredefined.com.a
         <meta property="twitter:title" content={title} />
         <meta property="twitter:description" content={description} />
         <meta property="twitter:image" content={imageURL} />
-	</head>
-	<body>
-		<slot />
+    </head>
+    <body>
+        <slot />
 
-		<script defer src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+        <script
+            defer
+            src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"
+        ></script>
 
+        <script is:inline>
+            document.addEventListener("DOMContentLoaded", function () {
+                if (typeof Swiper !== "undefined") {
+                    new Swiper(".swiper", {
+                        slidesPerView: "auto",
+                        loop: false,
+                        spaceBetween: 20,
+                        breakpoints: { 768: { spaceBetween: 40 } },
+                        navigation: {
+                            nextEl: ".swiper-button-next",
+                            prevEl: ".swiper-button-prev",
+                        },
+                    });
+                } else {
+                    console.error("Swiper library not loaded");
+                }
+            });
+        </script>
 
-		<script is:inline>
-			document.addEventListener('DOMContentLoaded', function() {
-				if (typeof Swiper !== 'undefined') {
-				new Swiper('.swiper', {
-					slidesPerView: "auto",
-					loop: true,
-					spaceBetween: 20,
-					breakpoints: { 768: { spaceBetween: 40 } },
-					navigation: {
-					nextEl: ".swiper-button-next",
-					prevEl: ".swiper-button-prev"
-					}
-				});
-				} else {
-				console.error('Swiper library not loaded');
-				}
-			});
-		</script>
-
-		<script is:inline src="https://cdn.usal.dev/latest"></script>
-	</body>
+        <script is:inline src="https://cdn.usal.dev/latest"></script>
+    </body>
 </html>
 
 <style>
-	* {
-		outline: none;
-		-webkit-tap-highlight-color: rgba(0,0,0,0);
-		box-sizing: border-box;
-		-webkit-touch-callout: none;
-		-moz-osx-font-smoothing: grayscale;
-		-webkit-font-smoothing: antialiased;
-		-moz-font-smoothing: antialiased;
-		-ms-font-smoothing: antialiased;
-		font-smoothing: antialiased
-	}
+    * {
+        outline: none;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        box-sizing: border-box;
+        -webkit-touch-callout: none;
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-font-smoothing: antialiased;
+        -moz-font-smoothing: antialiased;
+        -ms-font-smoothing: antialiased;
+        font-smoothing: antialiased;
+    }
 
-	html {
-		scroll-behavior: smooth;
-	}
+    html {
+        scroll-behavior: smooth;
+    }
 
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		max-width: 100%;
-		min-height: 100vh;
-		overflow-x: hidden;
-		font-family: "Helvetica Neue";
-	}
+    html,
+    body {
+        margin: 0;
+        width: 100%;
+        max-width: 100%;
+        min-height: 100vh;
+        overflow-x: hidden;
+        font-family: "Helvetica Neue";
+    }
 </style>
