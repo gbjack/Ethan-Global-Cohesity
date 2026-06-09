@@ -1,173 +1,115 @@
 ---
-// Static content as shown in the image.
+// Mobile & tablet (<1024px): 2 columns × 2 rows, no dividers
+// Desktop (≥1024px): 1 row with 4 items, centered black dividers
 ---
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Restaurant reservation details</title>
-  <!-- Tailwind CSS v3 - lightweight utility framework, keeps design true to original classes -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- No extra custom CSS that adds shadows, lines, or additional text.
-       We only override the layout behaviour to avoid 1-column stack, but keep all visual styles exactly as provided.
-       Original classes: flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center lg:flex-nowrap lg:justify-between lg:gap-6 items-start
-       Problem: On small screens (mobile), `flex-col` creates a 1-column stack.
-       Requirement: "I don't want the 1 col stack. It will go from 4 items to 2 items."
-       That means we need to transform the layout so that on small screens we have 2 columns (2 items per row),
-       on medium screens also likely 2 columns or flexible, and on large screens we keep the original horizontal row.
-       To achieve this without changing any visual appearance (colors, spacing, typography, icons), we must adjust
-       the flex behaviour or override with grid. Since the original code uses flex, we can add a custom override
-       that preserves all existing classes but replaces the stacking behaviour.
 
-       Approach: Keep original HTML structure EXACTLY as given (including all classes, SVGs, text).
-       However, the parent <ul> has `flex flex-col` which forces column on mobile. We need to change that
-       to a responsive grid that on default (mobile) shows 2 columns, on lg switches back to flex row.
-       But also we must keep all other original classes like `gap-3`, `sm:flex-row` etc? They might conflict.
-       Safest way: Add a non-invasive style block that applies to the same ul, overriding the display property
-       at different breakpoints, while keeping all original classes intact. The original classes will still be
-       present on the element but we use CSS with higher specificity to change layout behavior.
+<div
+    class="grid grid-cols-2 gap-4 lg:flex lg:flex-row lg:justify-between lg:items-center lg:gap-0"
+>
+    <div class="flex items-center gap-3">
+        <svg
+            class="w-8 h-8 lg:w-10 lg:h-10 shrink-0"
+            viewBox="0 0 42 42"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+            <circle
+                cx="21"
+                cy="21"
+                r="21"
+                transform="matrix(-1 0 0 1 42 0)"
+                fill="black"></circle>
+            <path
+                d="M15.0186 30.2769H27.8356C29.0252 30.2769 29.9893 29.2993 29.9893 28.093V15.0929C29.9893 13.8865 29.0252 12.9089 27.8356 12.9089H15.0186C13.8317 12.9171 12.873 13.8893 12.865 15.0929V28.0821C12.865 29.2885 13.829 30.2688 15.0186 30.2769ZM27.8356 14.2623C28.2814 14.2623 28.6439 14.6299 28.6439 15.082V28.0821C28.6439 28.5342 28.2814 28.9018 27.8356 28.9018H15.0186C14.5728 28.9018 14.2103 28.5342 14.2103 28.0821V15.0929C14.2103 14.6408 14.5728 14.2732 15.0186 14.2732L27.8356 14.2623Z"
+                fill="white"></path>
+            <path
+                d="M25.0027 16.7539C25.3733 16.7539 25.6741 16.4489 25.6741 16.0704V11.6835C25.6741 11.3077 25.3733 11 25.0027 11C24.6322 11 24.3287 11.305 24.3287 11.6835V16.0732C24.3287 16.2556 24.3985 16.4272 24.5248 16.5579C24.651 16.6859 24.8228 16.7567 25.0027 16.7567V16.7539Z"
+                fill="white"></path>
+            <path
+                d="M17.865 16.7539C18.2356 16.7539 18.5364 16.4489 18.5364 16.0704V11.6835C18.5364 11.3077 18.2356 11 17.865 11C17.4945 11 17.191 11.305 17.191 11.6835V16.0732C17.191 16.2529 17.2635 16.4272 17.3871 16.5551C17.5106 16.6831 17.6851 16.7539 17.8624 16.7539H17.865Z"
+                fill="white"></path>
+            <path
+                d="M13.5363 19.6023H29.3287C29.6992 19.6023 30 19.2973 30 18.9215C30 18.5457 29.6992 18.238 29.3287 18.238H13.5363C13.1657 18.238 12.865 18.543 12.865 18.9215C12.865 19.3001 13.1657 19.6023 13.5363 19.6023Z"
+                fill="white"></path>
+        </svg>
+        <time
+            datetime="2026-07-02"
+            class="font-bold text-sm lg:text-lg text-black whitespace-normal lg:whitespace-nowrap leading-none"
+            >Thurs 2 July 2026</time
+        >
+    </div>
 
-       To remain 100% true to the given code (classes, SVG markup, spacing), we won't remove or alter any class.
-       We'll add a <style> tag that targets the specific ul using its role attribute or a wrapper to enforce:
-       - On screens < 640px (default): display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;
-       - On screens between 640px and 1023px: keep grid 2 columns (optionally adjust gap but respect original gap-3)
-       - On screens >= 1024px: revert to original flex behaviour: display: flex; flex-direction: row; flex-wrap: nowrap; etc.
-       However the original classes also include `sm:flex-row sm:flex-wrap` which would conflict with grid on sm breakpoint.
-       To avoid conflict, we can force grid only up to lg breakpoint, and from lg upward we override to use flex with the original
-       properties. But the original code uses `lg:flex-nowrap lg:justify-between lg:gap-6`. That's fine.
-       So we will make sure that for max-width: 1023px, the ul uses grid layout (2 columns). For min-width: 1024px, we let the
-       original Tailwind classes (`lg:flex-nowrap` etc) take effect. But because we add a style that sets display: grid for
-       below lg, the original `flex flex-col` won't cause a column stack. Also the individual li items have width classes
-       `w-full sm:w-[calc(50%-0.75rem)] lg:w-auto`. In grid context, those widths might be ignored (grid items size based on columns).
-       That's fine: Grid will make each li fill the column width, and the inner content aligns left, which matches original design.
-       The `w-full` will have no negative effect; we can also let them be. For the dividers (hidden lg:block) they stay hidden
-       on mobile/tablet as intended.
+    <div class="hidden lg:block w-px h-6 bg-black"></div>
 
-       We also need to ensure no extra shadows, lines, or additional text appear. The code will be exactly the original markup
-       plus a <style> block that redefines layout without adding any visible elements.
-  -->
-  <style>
-    /* Target the reservation list by its role attribute to keep specificity high but not break anything else.
-       We also keep all original classes; this style overrides the flex behaviour for screens below 1024px.
-       No shadows, no lines, no extra text — only layout changes to prevent 1-column stack.
-    */
-    ul[role="list"][aria-label="Restaurant reservation details: date, venue, address, time"] {
-      /* For all screen sizes below 1024px, use grid with 2 columns */
-      display: grid !important;
-      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-      gap: 0.75rem !important; /* matches original gap-3 */
-      align-items: start !important;
-    }
+    <div class="flex items-center gap-3">
+        <svg
+            class="w-8 h-8 lg:w-10 lg:h-10 shrink-0"
+            viewBox="0 0 42 42"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+            <circle
+                cx="21"
+                cy="21"
+                r="21"
+                transform="matrix(-1 0 0 1 42 0)"
+                fill="black"></circle>
+            <path
+                d="M20.215 10.1008C20.3865 9.96641 20.6228 9.96641 20.7943 10.1008L29.8261 17.2824C30.0254 17.4399 30.0578 17.7318 29.9003 17.9357C29.7427 18.1349 29.4508 18.1673 29.2469 18.0098L28.283 17.2453V28.5367C28.283 28.7915 28.0744 29 27.8196 29H13.1758C12.9209 29 12.7124 28.7915 12.7124 28.5367V17.2407L11.7485 18.0052C11.6651 18.0747 11.5631 18.1071 11.4612 18.1071C11.3268 18.1071 11.1878 18.0469 11.0997 17.931C10.9422 17.7318 10.9746 17.4399 11.1739 17.2778L20.215 10.1008ZM13.6438 28.0687H27.3608V16.504L20.5023 11.0552L13.6438 16.5086V28.0733V28.0687Z"
+                fill="white"></path>
+        </svg>
+        <span
+            class="font-bold text-sm lg:text-lg text-black whitespace-normal lg:whitespace-nowrap leading-none"
+            >Aori Restaurant</span
+        >
+    </div>
 
-    /* On screens >= 1024px, revert to the original flex layout defined by Tailwind classes
-       (lg:flex-nowrap, lg:justify-between, etc). We want the original horizontal row behaviour.
-       Important to use the classes that were originally intended: the ul has 'flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center lg:flex-nowrap lg:justify-between lg:gap-6 items-start'
-       At lg breakpoint, the original classes would set display: flex, flex-direction: row, flex-wrap: nowrap, etc.
-       Our override should release the grid and let those classes work. So we reset display and grid properties.
-    */
-    @media (min-width: 1024px) {
-      ul[role="list"][aria-label="Restaurant reservation details: date, venue, address, time"] {
-        display: flex !important;
-        flex-direction: row !important;
-        flex-wrap: nowrap !important;
-        justify-content: space-between !important;
-        align-items: center !important;
-        gap: 1.5rem !important; /* lg:gap-6 */
-        grid-template-columns: none !important;
-      }
-    }
+    <div class="hidden lg:block w-px h-6 bg-black"></div>
 
-    /* For screens between 640px and 1023px, we keep the grid 2 columns but ensure gap matches original sm design.
-       The original gap at sm is also gap-3, but we keep consistent.
-       Additionally we want to keep the items from stretching weirdly. The li items original classes include sm:w-[calc(50%-0.75rem)]
-       but in grid context they are unnecessary; we can leave as is.
-    */
-    @media (min-width: 640px) and (max-width: 1023px) {
-      ul[role="list"][aria-label="Restaurant reservation details: date, venue, address, time"] {
-        gap: 0.75rem !important; /* keep gap-3 */
-      }
-    }
+    <div class="flex items-center gap-3">
+        <svg
+            class="w-8 h-8 lg:w-10 lg:h-10 shrink-0"
+            viewBox="0 0 42 42"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+            <circle cx="21" cy="21" r="21" fill="black"></circle>
+            <path
+                d="M21.4398 14.4839C19.577 14.4839 18.0623 16.0237 18.0623 17.9173C18.0623 19.8109 19.577 21.3506 21.4398 21.3506C23.3027 21.3506 24.8174 19.8109 24.8174 17.9173C24.8174 16.0237 23.3027 14.4839 21.4398 14.4839ZM21.4398 20.2942C20.1511 20.2942 19.1015 19.2272 19.1015 17.9173C19.1015 16.6073 20.1511 15.5404 21.4398 15.5404C22.7285 15.5404 23.7781 16.6073 23.7781 17.9173C23.7781 19.2272 22.7285 20.2942 21.4398 20.2942Z"
+                fill="white"></path>
+            <path
+                d="M27.0622 12.363C23.9626 9.21232 18.9171 9.21232 15.8175 12.363C13.1856 15.0384 12.7413 19.2878 14.7627 22.4649L19.6809 30.1978C20.0681 30.8079 20.728 31.1723 21.4399 31.1723C22.1517 31.1723 22.8117 30.8079 23.1988 30.1978L28.117 22.4649C30.1384 19.2878 29.6941 15.0384 27.0622 12.363ZM27.2441 21.8918L22.3258 29.6247C22.1284 29.9363 21.8036 30.1159 21.4373 30.1159C21.0709 30.1159 20.7488 29.9363 20.5487 29.6247L15.6305 21.8918C13.8715 19.1293 14.256 15.4345 16.5476 13.1105C17.896 11.7398 19.6653 11.0557 21.4347 11.0557C23.204 11.0557 24.9733 11.7398 26.3217 13.1105C28.6107 15.4372 28.9952 19.1293 27.2389 21.8918H27.2441Z"
+                fill="white"></path>
+        </svg>
+        <address
+            class="font-bold not-italic text-sm lg:text-lg text-black whitespace-normal lg:whitespace-nowrap leading-none"
+        >
+            39 Lime St, Sydney
+        </address>
+    </div>
 
-    /* Ensure that for any screen, the dividers (hidden lg:block) stay hidden on screens < 1024px.
-       Original HTML has class "hidden lg:block" on divider <li> elements, so they already hide on mobile/tablet.
-       No change needed. Also we must ensure that list items keep their original styles (flex, gap-2, etc) without interference.
-       All SVG and text styling remains untouched.
-    */
+    <div class="hidden lg:block w-px h-6 bg-black"></div>
 
-    /* Additional micro-reset: The original ul also has items-start class. In grid mode items-start aligns items to start, fine.
-       No extra margin/padding/shadow. */
-  </style>
-</head>
-<body class="bg-transparent p-4"> <!-- transparent background, no extra styling, just to display in context; no shadows or lines added -->
-  <!-- EXACT original markup, unchanged except the enclosing body has no extra styles -->
-  <ul
-    class="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center lg:flex-nowrap lg:justify-between lg:gap-6 items-start"
-    role="list" aria-label="Restaurant reservation details: date, venue, address, time">
-    <!-- 1️⃣ Date -->
-    <li class="flex items-center gap-2 w-full sm:w-[calc(50%-0.75rem)] lg:w-auto focus-ring" role="listitem">
-      <svg class="w-9 h-9 sm:w-10 sm:h-10 shrink-0" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true" focusable="false">
-        <circle cx="21" cy="21" r="21" transform="matrix(-1 0 0 1 42 0)" fill="black"/>
-        <path d="M15.0186 30.2769H27.8356C29.0252 30.2769 29.9893 29.2993 29.9893 28.093V15.0929C29.9893 13.8865 29.0252 12.9089 27.8356 12.9089H15.0186C13.8317 12.9171 12.873 13.8893 12.865 15.0929V28.0821C12.865 29.2885 13.829 30.2688 15.0186 30.2769ZM27.8356 14.2623C28.2814 14.2623 28.6439 14.6299 28.6439 15.082V28.0821C28.6439 28.5342 28.2814 28.9018 27.8356 28.9018H15.0186C14.5728 28.9018 14.2103 28.5342 14.2103 28.0821V15.0929C14.2103 14.6408 14.5728 14.2732 15.0186 14.2732L27.8356 14.2623Z" fill="white"/>
-        <path d="M25.0027 16.7539C25.3733 16.7539 25.6741 16.4489 25.6741 16.0704V11.6835C25.6741 11.3077 25.3733 11 25.0027 11C24.6322 11 24.3287 11.305 24.3287 11.6835V16.0732C24.3287 16.2556 24.3985 16.4272 24.5248 16.5579C24.651 16.6859 24.8228 16.7567 25.0027 16.7567V16.7539Z" fill="white"/>
-        <path d="M17.865 16.7539C18.2356 16.7539 18.5364 16.4489 18.5364 16.0704V11.6835C18.5364 11.3077 18.2356 11 17.865 11C17.4945 11 17.191 11.305 17.191 11.6835V16.0732C17.191 16.2529 17.2635 16.4272 17.3871 16.5551C17.5106 16.6831 17.6851 16.7539 17.8624 16.7539H17.865Z" fill="white"/>
-        <path d="M13.5363 19.6023H29.3287C29.6992 19.6023 30 19.2973 30 18.9215C30 18.5457 29.6992 18.238 29.3287 18.238H13.5363C13.1657 18.238 12.865 18.543 12.865 18.9215C12.865 19.3001 13.1657 19.6023 13.5363 19.6023Z" fill="white"/>
-      </svg>
-      <time datetime="2026-07-02" class="font-sans font-bold text-sm sm:text-lg tracking-tight text-gray-900 whitespace-normal sm:whitespace-normal lg:whitespace-nowrap">
-        Thurs 2 July 2026
-      </time>
-    </li>
-
-    <li class="hidden lg:block self-center" aria-hidden="true">
-      <div class="w-px min-w-px max-w-px h-12 bg-black mx-2"></div>
-    </li>
-
-    <!-- 2️⃣ Venue -->
-    <li class="flex items-center gap-2 w-full sm:w-[calc(50%-0.75rem)] lg:w-auto focus-ring" role="listitem">
-      <svg class="w-9 h-9 sm:w-10 sm:h-10 shrink-0" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true" focusable="false">
-        <circle cx="21" cy="21" r="21" transform="matrix(-1 0 0 1 42 0)" fill="black"/>
-        <path d="M20.215 10.1008C20.3865 9.96641 20.6228 9.96641 20.7943 10.1008L29.8261 17.2824C30.0254 17.4399 30.0578 17.7318 29.9003 17.9357C29.7427 18.1349 29.4508 18.1673 29.2469 18.0098L28.283 17.2453V28.5367C28.283 28.7915 28.0744 29 27.8196 29H13.1758C12.9209 29 12.7124 28.7915 12.7124 28.5367V17.2407L11.7485 18.0052C11.6651 18.0747 11.5631 18.1071 11.4612 18.1071C11.3268 18.1071 11.1878 18.0469 11.0997 17.931C10.9422 17.7318 10.9746 17.4399 11.1739 17.2778L20.215 10.1008ZM13.6438 28.0687H27.3608V16.504L20.5023 11.0552L13.6438 16.5086V28.0733V28.0687Z" fill="white"/>
-      </svg>
-      <span class="font-sans font-bold text-sm sm:text-lg tracking-tight text-gray-900 whitespace-normal sm:whitespace-normal lg:whitespace-nowrap">
-        Aori Restaurant
-      </span>
-    </li>
-
-    <li class="hidden lg:block self-center" aria-hidden="true">
-      <div class="w-px min-w-px max-w-px h-12 bg-black mx-2"></div>
-    </li>
-
-    <!-- 3️⃣ Address -->
-    <li class="flex items-center gap-2 w-full sm:w-[calc(50%-0.75rem)] lg:w-auto focus-ring" role="listitem">
-      <svg class="w-9 h-9 sm:w-10 sm:h-10 shrink-0" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true" focusable="false">
-        <circle cx="21" cy="21" r="21" fill="black"/>
-        <path d="M21.4398 14.4839C19.577 14.4839 18.0623 16.0237 18.0623 17.9173C18.0623 19.8109 19.577 21.3506 21.4398 21.3506C23.3027 21.3506 24.8174 19.8109 24.8174 17.9173C24.8174 16.0237 23.3027 14.4839 21.4398 14.4839ZM21.4398 20.2942C20.1511 20.2942 19.1015 19.2272 19.1015 17.9173C19.1015 16.6073 20.1511 15.5404 21.4398 15.5404C22.7285 15.5404 23.7781 16.6073 23.7781 17.9173C23.7781 19.2272 22.7285 20.2942 21.4398 20.2942Z" fill="white"/>
-        <path d="M27.0622 12.363C23.9626 9.21232 18.9171 9.21232 15.8175 12.363C13.1856 15.0384 12.7413 19.2878 14.7627 22.4649L19.6809 30.1978C20.0681 30.8079 20.728 31.1723 21.4399 31.1723C22.1517 31.1723 22.8117 30.8079 23.1988 30.1978L28.117 22.4649C30.1384 19.2878 29.6941 15.0384 27.0622 12.363ZM27.2441 21.8918L22.3258 29.6247C22.1284 29.9363 21.8036 30.1159 21.4373 30.1159C21.0709 30.1159 20.7488 29.9363 20.5487 29.6247L15.6305 21.8918C13.8715 19.1293 14.256 15.4345 16.5476 13.1105C17.896 11.7398 19.6653 11.0557 21.4347 11.0557C23.204 11.0557 24.9733 11.7398 26.3217 13.1105C28.6107 15.4372 28.9952 19.1293 27.2389 21.8918H27.2441Z" fill="white"/>
-      </svg>
-      <address class="font-sans font-bold not-italic text-sm sm:text-lg tracking-tight text-gray-900 whitespace-normal sm:whitespace-normal lg:whitespace-nowrap">
-        39 Lime St, Sydney
-      </address>
-    </li>
-
-    <li class="hidden lg:block self-center" aria-hidden="true">
-      <div class="w-px min-w-px max-w-px h-12 bg-black mx-2"></div>
-    </li>
-
-    <!-- 4️⃣ Time -->
-    <li class="flex items-center gap-2 w-full sm:w-[calc(50%-0.75rem)] lg:w-auto focus-ring" role="listitem">
-      <svg class="w-9 h-9 sm:w-10 sm:h-10 shrink-0" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true" focusable="false">
-        <circle cx="21" cy="21" r="21" transform="matrix(-1 0 0 1 42 0)" fill="black"/>
-        <path d="M21.5 10C18.716 10 16.0448 11.1064 14.0744 13.0744C12.1064 15.0448 11 17.716 11 20.5C11 23.284 12.1064 25.9552 14.0744 27.9256C16.0448 29.8936 18.716 31 21.5 31C24.284 31 26.9552 29.8936 28.9256 27.9256C30.8936 25.9552 32 23.284 32 20.5C31.9976 17.716 30.8912 15.0472 28.9208 13.0792C26.9504 11.1112 24.284 10.0024 21.5 10ZM21.5 29.5C19.112 29.5 16.8248 28.552 15.1352 26.8648C13.4456 25.1776 12.5 22.888 12.5 20.5C12.5 18.112 13.448 15.8248 15.1352 14.1352C16.8224 12.4456 19.112 11.5 21.5 11.5C23.888 11.5 26.1752 12.448 27.8648 14.1352C29.5544 15.8224 30.5 18.112 30.5 20.5C30.4976 22.8856 29.5496 25.1728 27.86 26.86C26.1704 28.5472 23.8856 29.4952 21.5 29.5ZM25.7816 23.7184C26.0744 24.0112 26.0744 24.4864 25.7816 24.7792C25.4888 25.072 25.0136 25.072 24.7208 24.7792L21.1904 21.2488C20.9072 20.968 20.7488 20.5864 20.7512 20.188V13.7488C20.7512 13.3336 21.0872 13 21.5 13C21.9128 13 22.2488 13.336 22.2488 13.7488V20.188L25.7792 23.7184H25.7816Z" fill="white"/>
-      </svg>
-      <span class="font-sans font-bold text-sm sm:text-lg tracking-tight text-gray-900 whitespace-normal sm:whitespace-normal lg:whitespace-nowrap">
-        12.00 - 3:00 PM
-      </span>
-    </li>
-  </ul>
-
-  <!-- Hidden screen-reader summary -->
-  <div class="sr-only" aria-live="polite">
-    Reservation details: Thursday, 2 July 2026 at Aori Restaurant, located at 39 Lime Street Sydney, from 12 PM to 3 PM.
-  </div>
-</body>
-</html>
+    <div class="flex items-center gap-3">
+        <svg
+            class="w-8 h-8 lg:w-10 lg:h-10 shrink-0"
+            viewBox="0 0 42 42"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+            <circle
+                cx="21"
+                cy="21"
+                r="21"
+                transform="matrix(-1 0 0 1 42 0)"
+                fill="black"></circle>
+            <path
+                d="M21.5 10C18.716 10 16.0448 11.1064 14.0744 13.0744C12.1064 15.0448 11 17.716 11 20.5C11 23.284 12.1064 25.9552 14.0744 27.9256C16.0448 29.8936 18.716 31 21.5 31C24.284 31 26.9552 29.8936 28.9256 27.9256C30.8936 25.9552 32 23.284 32 20.5C31.9976 17.716 30.8912 15.0472 28.9208 13.0792C26.9504 11.1112 24.284 10.0024 21.5 10ZM21.5 29.5C19.112 29.5 16.8248 28.552 15.1352 26.8648C13.4456 25.1776 12.5 22.888 12.5 20.5C12.5 18.112 13.448 15.8248 15.1352 14.1352C16.8224 12.4456 19.112 11.5 21.5 11.5C23.888 11.5 26.1752 12.448 27.8648 14.1352C29.5544 15.8224 30.5 18.112 30.5 20.5C30.4976 22.8856 29.5496 25.1728 27.86 26.86C26.1704 28.5472 23.8856 29.4952 21.5 29.5ZM25.7816 23.7184C26.0744 24.0112 26.0744 24.4864 25.7816 24.7792C25.4888 25.072 25.0136 25.072 24.7208 24.7792L21.1904 21.2488C20.9072 20.968 20.7488 20.5864 20.7512 20.188V13.7488C20.7512 13.3336 21.0872 13 21.5 13C21.9128 13 22.2488 13.336 22.2488 13.7488V20.188L25.7792 23.7184H25.7816Z"
+                fill="white"></path>
+        </svg>
+        <span
+            class="font-bold text-sm lg:text-lg text-black whitespace-normal lg:whitespace-nowrap leading-none"
+            >12.00 - 3:00 PM</span
+        >
+    </div>
+</div>
