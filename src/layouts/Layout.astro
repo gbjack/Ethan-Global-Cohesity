@@ -1,14 +1,14 @@
 ---
 import '../styles/global.css'
 
-const { 
-	title = "Resilience Redefined | Ethan Global x Cohesity Event", 
+const {
+	title = "Resilience Redefined | Ethan Global x Cohesity Event",
 	description = "Join Ethan Global and Cohesity for an executive lunch discussion focused on cyber resilience, operational continuity and recovery readiness in today's evolving threat landscape. Designed for senior security and technology leaders, this conversational session explores how organisations are reducing operational risk, improving recovery confidence and preparing for modern cyber threats.",
 	image = "https://resilienceredefined.com.au/meta-tags.png"
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://resilienceredefined.com.au/");
-const imageURL = new URL(image, Astro.site || "https://resilienceredefined.com.au/"); 
+const imageURL = new URL(image, Astro.site || "https://resilienceredefined.com.au/");
 ---
 
 <!doctype html>
@@ -43,7 +43,7 @@ const imageURL = new URL(image, Astro.site || "https://resilienceredefined.com.a
 	</head>
 	<body>
 		<slot />
-		
+
 		<script defer src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
 
 
@@ -93,7 +93,7 @@ const imageURL = new URL(image, Astro.site || "https://resilienceredefined.com.a
 		width: 100%;
 		max-width: 100%;
 		min-height: 100vh;
-		overflow-x: hidden;		
+		overflow-x: hidden;
 		font-family: "Helvetica Neue";
 	}
 </style>
